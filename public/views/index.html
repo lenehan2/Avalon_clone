@@ -7,19 +7,34 @@
     <link href="/stylesheets/style.css" type="text/css" rel="stylesheet">
     <link href="/stylesheets/style.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="http://css-spinners.com/css/spinner/spinner.css" type="text/css">
-
+    
     <script src="/angular/angular.js"></script>
     <script src="socket.io/socket.io.js"></script>
     <script src="/angular-socket-io/socket.js"></script>
     <script src="/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/appBrowser.js"></script>
+    <script src="/js/directives/myCharDirective.js"></script>
+    <script src="/js/directives/myLoadingDirective.js"></script>
+    <script src="/js/directives/myLobbyDirective.js"></script>
+    <script src="/js/directives/myProfileDirective.js"></script>
+    <script src="/js/directives/sideBarDirective.js"></script>
+    <script src="/js/Main/mainController.js"></script>
+    <script src="/js/Main/mainState.js"></script>
+    <script src="/js/Main/mainFactory.js"></script>
+    <script src="/js/GameAction/gameStateController.js"></script>
+    <script src="/js/Rooms/roomController.js"></script>
+    <script src="/js/Rooms/roomFactory.js"></script>
+    <script src="/js/Game/gameState.js"></script>
+    <script src="/js/Game/gameController.js"></script>
+    <script src="/js/Game/gameFactory.js"></script>
+
+
     <script src="/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="js/app.js"></script>
     <title>Stackalon: Avalon Clone/Helper App</title>
 </head>
 
-<body ng-app='avalon-clone' ng-controller='MainCtrl' ng-init>
+<body ng-app='avalon-clone' ng-controller='MainCtrl'>
     <ui-view></ui-view>
 </body>
     <script type="text/javascript" src='bootstrap/dist/js/bootstrap.min.js'></script>

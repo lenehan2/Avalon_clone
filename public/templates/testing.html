@@ -1,5 +1,7 @@
 <!-- Modal -->
-<my-char role="getRole()"></my-char>
+<my-char role="role"></my-char>
+
+{{leader}}
 <div class="top md-col-12">
     <div class="mycontainer">
         <div class="md-col-12">
@@ -22,44 +24,44 @@
         </div>
     </div>
 </div>
-<side-bar ng-show="showData" game=tempGame></side-bar>
+<side-bar ng-show="showData"></side-bar>
 <div class="header">
-    <p>{{tempGame.roomName}}</p>
+    <p>{{game.roomName}}</p>
 </div>
 <div class="col-md-12 gameBoard">
     <div class="board" ng-show="!gameOrCurrent">
-        <div ng-repeat="round in getGame().rounds" class="col-xs-2 col-sm-2 col-md-2 roundButton" ng-class="{'col-xs-offset-1 col-sm-offset-1 col-md-offset-1': $first}">
-            <button class="roundNumber disabled no-hover" ng-class="{evil: round.winner==='evil', good: round.winner==='good', current: getGame().currentRound===$index+1}"> {{round.people}} </button>
+        <div ng-repeat="round in game.rounds" class="col-xs-2 col-sm-2 col-md-2 roundButton" ng-class="{'col-xs-offset-1 col-sm-offset-1 col-md-offset-1': $first}">
+            <button class="roundNumber disabled no-hover" ng-class="{evil: round.winner==='evil', good: round.winner==='good', current: game.currentRound===$index+1}"> {{round.people}} </button>
             <p ng-show="round.doubleFail">Two Fails needed to Fail</p>
         </div>
     </div>
     <div class="currentGameStats" ng-show="gameOrCurrent">
-    {{gameState()}}
+    {{gameState}}
         <div class="col-md-7 wrapper">
             <div class="col-md-12 action">
                 <h4>Actionable Events</h4>
                 <div class="col-md-12 center2">
-                    <my-loading ng-show="!gameState().active" message="gameState().message"></my-loading>
+                    <my-loading ng-show="!gameState.active" message="gameState.message"></my-loading>
                 </div>
             </div>
         </div>
         <div class="col-md-5 wrapper">
             <div class="col-md-12 stats">
-                <h4>Current Round: {{getGame().currentRound}}</h4>
+                <h4>Current Round: {{game.currentRound}}</h4>
                 <div class="scoreCard">
                     <h6>Score</h6>
-                    <h6>Good: {{getGame().score.Good}}</h6>
-                    <h6>Evil: {{getGame().score.Evil}}</h6>
+                    <h6>Good: {{game.score.Good}}</h6>
+                    <h6>Evil: {{game.score.Evil}}</h6>
                 </div>
                 <br>
                 <div class="col-md-12">
                     <div class="col-md-6">
                         <h7>Current Leader: </h7>
-                        <p>{{getGame().leader.name}}</p>
+                        <p>{{game.leader.name}}</p>
                     </div>
                     <div class="col-md-6">
                         <h7>Current Lady</h7>
-                        <p>{{getGame().Lady.currentHolder.name}}</p>
+                        <p>{{game.Lady.currentHolder.name}}</p>
                     </div>
                 </div>
             </div>
@@ -68,7 +70,7 @@
     </div>
     <br>
     <br>
-    <div class="profileContainer" game="getGame()">
+    <div class="profileContainer">
         <!--     <div>
         {{yourRole}}
         <h2>{{getGame().roomName}}</h2>
@@ -83,8 +85,8 @@
     </div>
  -->
         <div class="realContainer">
-            <div class="profileScroller" ng-repeat="user in getGame().players">
-                <my-profile user='user' username='username' lady='getGame().Lady' leader='getGame().leader'></my-profile>
+            <div class="profileScroller" ng-repeat="user in game.players">
+                <my-profile user='user' username='username' lady='game.Lady' leader='game.leader'></my-profile>
             </div>
         </div>
     </div>

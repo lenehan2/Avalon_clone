@@ -177,10 +177,10 @@ io.on('connection', function(socket){
 
 
 		})
-
-		io.emit('game',game)
 		
-		io.emit('setGameState',game)
+			io.emit('game',game)
+			
+			io.emit('setGameState',game)
 
 		// console.log('percivalInfo: ', percivalInfo)
 		// console.log('merlinInfo: ', merlinInfo)
