@@ -1,0 +1,28 @@
+<div class = "col-md-9" game = "getGame()">
+<div class = "col-md-3">
+	<div class = 'col-md-12'>
+		<h2>Roles</h2>
+		<ul>
+			<li ng-repeat = "role in getGame().roles track by $index">{{role}}</li>
+		</ul>
+		<h2 ng-show="getGame().Lady.inUse">Current Lady:</h2>
+		<p>{{getGame().Lady.currentHolder.name}}</p>
+	</div>
+</div>
+
+
+<div class = "col-md-9">
+	{{yourRole}}
+	{{game}}
+	<h2>{{getGame().roomName}}</h2>
+	
+    <ul>
+
+         <li ng-repeat='user in getGame().players' ng-class="{'blink_me':$last,'user':username===user.name}">{{user.name}}</li>
+    </ul>
+    <p>The Host is: {{room.host.name}}</p>
+
+</div>
+</div>
+
+<pre> {{getGame() | json}} </pre>

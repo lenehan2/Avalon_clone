@@ -1,0 +1,19 @@
+<div class="mycontainer">
+    <div class="header">
+        <h1>Welcome to Stackalon!</h1>
+    </div>
+    <button ui-sref="testing"></button>
+    <div id="MainLobby">
+        <my-Lobby room="lobby" username="currentUser.name">
+        </my-Lobby>
+    </div>
+    <div ng-hide="userNameAccepted">
+        <form class="simple-form">
+            Name:
+            <input type="text" ng-model="user.name" />{{message}}
+            <br />
+            <input type="submit" ng-click="userName(user)" value="Save" />
+        </form>
+    </div>
+</div>
+<ui-view></ui-view>

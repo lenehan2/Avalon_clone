@@ -1,0 +1,37 @@
+<div class = "col-md-3">
+    <!-- <my-Lobby users="getCurrentRoom().users" room="getCurrentRoom()">
+    </my-Lobby> -->
+    <my-Lobby room="getCurrentRoom()">
+    </my-Lobby>
+</div>
+<div class = "col-md-3" ng-show="getCurrentRoom().host.name === currentUser.name" ng-controller="gameController" ng-submit='startGame(game)'>
+	<h3>Game Options</h3>
+    <form name="gameSetup" novalidate>
+        <p>Roles to Include: </p>
+        <span ng-class="{'suggestedRole': size()> 5}">Merlin</span>
+        <input type="checkbox" ng-model="game.Merlin" name="role" value="true">
+        <br> <span ng-class="{'suggestedRole': size()> 5}">Mordred</span>
+        <input type="checkbox" ng-model="game.Mordred" name="role" value="true">
+        <br> <span ng-class="{'suggestedRole': size()> 6}">Morgana</span>
+        <input type="checkbox" ng-model="game.Morgana" name="role" value="true">
+        <br> <span ng-class="{'suggestedRole': size()> 6}">Percival</span>
+        <input type="checkbox" name="role" ng-model="game.Percival" value="true">
+        <br> <span ng-class="{'suggestedRole': size()> 5}">Assassin</span>
+        <input type="checkbox" name="role" ng-model="game.Assassin" value="true">
+        <br> <span ng-class="{'suggestedRole': size()> 8}">Oberon</span>
+        <input type="checkbox" name="role" ng-model="game.Oberon" value="true">
+        <br>
+        <p>Do you want to play with the Lady Card?</p>
+        <input type="radio" ng-model="game.Lady" ng-value="true" checked><span ng-class="{'suggestedRole': size()> 2}">Yes</span>
+        <br>
+        <input type="radio" ng-model="game.Lady" ng-value="false"><span>No</span>
+        <br>
+        <br>
+        <input ng-disabled="getCurrentRoom().users.length < 5" type="submit" value="Let's play!">
+        <br>
+        <div id="errorMessage">
+            <p ng-hide="getCurrentRoom().users.length > 4">There are not enough players in the game to start</p>
+        </div>
+    </form>
+</div>
+<div class ="col-md-9"></div>

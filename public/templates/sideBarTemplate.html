@@ -1,0 +1,12 @@
+<div class='gameStats col-md-2'>
+    <div class='col-md-12'>
+        <h2>Roles</h2>
+        <p>Picture here</p>
+        <img src="images/profilePicture.png" alt="">
+        <ul>
+            <li ng-repeat="role in game.roles track by $index">{{role}}</li>
+        </ul>
+        <h2 ng-show="game.Lady.inUse">Current Lady:</h2>
+        <p>{{game.Lady.currentHolder.name}}</p>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div ng-hide = "joinedRoom">
+	<p>Create a room or select one from the list below</p>
+	<form class="simple-form">
+			Room Name: <input type="text" ng-model="newRoom.name" />{{roomMessage}}<br />
+       		<input type="submit" ng-click="roomName(newRoom.name)" value="Save" />	
+	</form>
+	<div ng-repeat="room in rooms" >
+		<my-Lobby room = 'room'>
+
+		</my-Lobby>
+		<button ng-click="join(room)">Join</button>
+	</div>
+</div>

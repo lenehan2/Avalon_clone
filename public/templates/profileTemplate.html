@@ -1,0 +1,14 @@
+<div class="profile" ng-class= "{currentLeader: user.name === leader.name}">
+    <div class="imgContainer">
+        <img src="images/profilePicture.png" alt="">
+    </div>
+    <div class="col-md-12 userInfo">
+        <p>{{user.name}}</p>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 card">
+        <img src="images/crown.jpg" ng-class="{active: user.name === leader.name}" alt="">
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 card">
+        <img src="images/ladyOfTheLake.jpg" ng-class="{active: user.name === lady.currentHolder.name}" alt="">
+    </div>
+</div>

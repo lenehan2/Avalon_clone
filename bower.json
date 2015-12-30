@@ -1,0 +1,24 @@
+{
+  "name": "Avalon",
+  "version": "0.0.0",
+  "authors": [
+    "John L <john.m.lenehan@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material": "~1.0.1",
+    "angular-socket-io": "~0.7.0",
+    "angular-drag-and-drop-lists": "~1.3.0"
+  }
+}

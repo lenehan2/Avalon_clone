@@ -1,0 +1,59 @@
+#currentUsers {
+    display: none;
+}
+
+#socketJoin {
+	display: none;
+}
+
+#roomCreate {
+	display: none;
+}
+
+#lobbyUsers {
+	float: right;
+}
+
+#roomsList {
+	list-style: none;
+}
+
+h1 {
+	display: inline-block;
+}
+
+#MainLobby {
+	display: inline-block;
+	float: right;
+}
+
+.lastElement {
+	background-color: #7ABA63;
+}
+
+.blink_me {
+  animation: blinker 1s linear;
+}
+
+@keyframes blinker {  
+  50% { opacity: 0.0; }
+}
+
+.user {
+	background-color: red;
+}
+
+.suggestedRole {
+	color: green;
+}
+
+.header {
+	text-align: center;
+}
+
+.userBox {
+	border-width: 3px;
+	border-color: green;
+	border-style: solid;
+}
+

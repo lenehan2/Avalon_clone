@@ -1,0 +1,151 @@
+.mycontainer {
+  width: 95%;
+  margin: 0 auto;
+  overflow: hidden; }
+
+.logo {
+  float: left;
+  overflow: hidden; }
+  .logo p {
+    color: red; }
+
+.role {
+  overflow: hidden;
+  float: right;
+  padding-bottom: 15px; }
+
+.top {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  width: 100%;
+  background-color: blue; }
+
+img {
+  width: 50px; }
+
+.profile {
+  width: 150px;
+  height: 200px;
+  border-style: solid;
+  border-size: 4px; }
+  .profile .imgContainer {
+    text-align: center;
+    margin-top: 20px; }
+  .profile .userInfo {
+    padding-top: 10px; }
+    .profile .userInfo p {
+      font-size: 20px;
+      text-align: center; }
+  .profile .card {
+    padding: 0;
+    text-align: center; }
+    .profile .card img {
+      max-height: 100%;
+      max-width: 100%;
+      filter: gray;
+      filter: grayscale(1);
+      -webkit-filter: grayscale(1); }
+    .profile .card img.active {
+      filter: none;
+      -webkit-filter: grayscale(0);
+      border: 2px solid red; }
+  .profile.currentLeader {
+    border-color: red; }
+
+.dummy {
+  padding-top: 100%; }
+
+.testing {
+  background-color: red;
+  padding-top: 10px; }
+
+.profileContainer {
+  overflow-x: scroll;
+  white-space: nowrap;
+  overflow-y: hidden; }
+
+.rolesList {
+  float: left; }
+
+ul {
+  padding: 0;
+  list-style: none; }
+
+.realContainer {
+  display: inline-block; }
+
+.profileScroller {
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 10px; }
+
+.board {
+  height: 400px;
+  background-image: url("../images/river.jpg");
+  background-size: 100%; }
+
+@media (max-width: 850px) {
+  .board {
+    background-size: auto 100%; } }
+.currentGameStats {
+  height: 400px; }
+  .currentGameStats .wrapper {
+    height: 100%;
+    padding: 5px; }
+    .currentGameStats .wrapper > div {
+      height: 100%;
+      border: 3px solid black; }
+      .currentGameStats .wrapper > div h4 {
+        float: left;
+        clear: right; }
+    .currentGameStats .wrapper p {
+      font-size: 30px; }
+    .currentGameStats .wrapper h7 {
+      font-size: 10px; }
+
+.scoreCard {
+  float: right;
+  clear: right; }
+
+.roundButton {
+  height: 400px;
+  text-align: center; }
+  .roundButton button {
+    box-shadow: none;
+    border: none;
+    outline: 0;
+    vertical-align: middle;
+    margin-top: 150px;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    background-color: #BAB0AC; }
+    .roundButton button.evil {
+      background-color: red; }
+    .roundButton button.good {
+      background-color: blue; }
+    .roundButton button.current {
+      background-color: #3ABA23; }
+
+.no-hover {
+  pointer-events: none; }
+
+.gameStats {
+  height: 100%;
+  background-color: green;
+  z-index: 20;
+  position: absolute; }
+
+.gameBoard {
+  padding: 0 60px 0 60px; }
+
+.top {
+  z-index: 999999; }
+
+.center > div {
+  text-align: center; }
+
+.center2 {
+  margin: 110px 0; }
+
+/*# sourceMappingURL=style.css.map */
