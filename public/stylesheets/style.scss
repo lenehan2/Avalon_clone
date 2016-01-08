@@ -1,3 +1,84 @@
+$main-color: #F1D393;
+.fullPage {
+    height: 100%;
+    width: 100%;
+    background-color: $main-color;
+    >div {
+        height: 100%;
+    }
+}
+
+.smallGameBoard {
+    display: none;
+}
+
+.welcomeContainerMobile {
+    display: none;
+}
+
+.bodyPage {
+    h3 {
+        margin-top: 0;
+    }
+}
+
+.lobby {
+    display: none;
+}
+
+#welcome {
+    .headerDiv {
+        text-align: center;
+    }
+    top: 15%;
+    background-color: #60CEE3;
+    height: 450px;
+    border-radius: 10%;
+    @media (max-width: 500px) {
+        top: 10%;
+    }
+    input {
+        margin-top: 10px;
+    }
+    input[type=text] {
+        border: 1px white solid;
+        border-radius: 10%;
+        background-color: rgba(255, 255, 255, 0.4);
+    }
+    padding: 0 40px;
+    >div {
+        padding: 3%;
+    }
+}
+
+@media (max-width: 500px) {
+    .welcomeContainerMobile {
+        display: block;
+        input {
+            height: 48px;
+        }
+        input [type=submit] {
+            height: 35px;
+        }
+    }
+    .welcomeContainer {
+        display: none;
+    }
+    #welcome {
+        padding: 0 10px;
+    }
+    .bodyPage {
+        .currentRoom {
+            display: none;
+        }
+    }
+}
+
+.subHeader {
+    text-align: center;
+    padding-top: 20px;
+}
+
 .mycontainer {
     width: 95%;
     margin: 0 auto;
@@ -80,6 +161,7 @@ img {
 
 .profileContainer {
     // width: 100%;
+    clear: left;
     overflow-x: scroll;
     white-space: nowrap;
     overflow-y: hidden;
@@ -96,6 +178,9 @@ ul {
 
 .realContainer {
     display: inline-block;
+    text-align: center;
+    width: 100%;
+    clear: left;
 }
 
 .profileScroller {
@@ -123,7 +208,6 @@ ul {
         height: 100%;
         padding: 5px;
         > div {
-            
             h4 {
                 float: left;
                 clear: right;
@@ -191,13 +275,198 @@ ul {
 }
 
 .center {
-    > div{
+    > div {
         text-align: center;
-    }    
+    }
 }
 
 .center2 {
     // background-color: red;
-    margin: 110px 0;   
+    margin: 110px 0;
 }
 
+.lobbyDirective {
+    h2 {
+        margin-top: 0px;
+    }
+}
+
+.bodyPage {
+    padding-top: 20px;
+}
+
+.header {
+    // .headerDiv{
+    //     position: absolute;
+    // }
+    h1 {
+        z-index: 1;
+        margin: 20px 0;
+    }
+    background-color: $main-color;
+    .menuButton {
+        float: left;
+        display: none;
+        padding: 20px 0 20px 20px;
+        button {
+            padding: 10px;
+            border-radius: 20%;
+            background: none;
+            border-style: solid;
+        }
+    }
+    @media (max-width: 500px) {
+        h1 {
+            font-size: 20px;
+            margin: 25px;
+        }
+        .menuButton {
+            display: inline-block;
+            button {
+                display: inline-block;
+            }
+        }
+    }
+    height: 80px;
+}
+
+.menuButton {
+    float: left;
+    display: none;
+    padding: 20px 0 20px 20px;
+    button {
+        padding: 10px;
+        border-radius: 20%;
+        background: none;
+        border-style: solid;
+    }
+}
+
+@media (max-width: 500px) {
+    .menuButton {
+        display: inline-block;
+        button {
+            display: inline-block;
+        }
+    }
+    .menuBtn {
+        display: block;
+        padding: 20px;
+        border-radius: 20%;
+        background: white;
+        border-style: solid;
+    }
+    #detailsBtn {
+        display: none;
+    }
+    .boardInfo {
+        display: none;
+    }
+}
+
+.menu {
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(95, 83, 58, 0.7);
+    position: absolute;
+    >div {
+        padding-top: 10px;
+    }
+    .button {
+        text-align: center;
+        width: 100%;
+        padding: 20 10;
+        background-color: $main-color;
+    }
+}
+
+.userList {
+    max-height: 160px;
+    overflow: auto;
+}
+
+.roomOption {
+    height: auto;
+    overflow: hidden;
+    padding: 5px;
+}
+
+@media (min-width: 768px) {
+    .roomOption {
+        height: 310px;
+    }
+}
+
+.paddingDiv {
+    background-color: #E3E2E0;
+    padding: 5px;
+}
+
+@media (max-width: 667px) {
+    #MainLobby {
+        display: none;
+    }
+    #MainLobby {
+        width: 100%;
+        float: none;
+    }
+    .gameBoard {
+        padding: 0 5px;
+    }
+    #detailsBtn {
+        display: none;
+    }
+}
+
+@media (max-width: 500px) {
+    .smallGameBoard {
+        display: inline-block;
+    }
+    .bigGameBoard {
+        display: none;
+    }
+    .roundButton {
+        width: 100%;
+        height: 120px;
+        button {
+            margin-top: 10px;
+        }
+        p{
+            color: white;
+        }
+    }
+    div.board {
+        height: 650px;
+        padding-top: 20px;
+    }
+    .userList {
+        display: none;
+    }
+    .profileContainer {
+        display: none;
+    }
+}
+
+.bodyPage {
+    div.subHeader {
+        padding-top: 0px
+    }
+}
+
+.viewButton {
+    z-index: 1;
+    text-align: left;
+    padding-left: 60px;
+    padding-bottom: 10px;
+    height: 60px;
+}
+
+@media (min-width: 500px){
+    #menuBtn {
+        display: none;
+    }
+
+}
+
+@import 'spinner';

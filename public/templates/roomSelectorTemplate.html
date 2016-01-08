@@ -1,13 +1,61 @@
-<div ng-hide = "joinedRoom">
-	<p>Create a room or select one from the list below</p>
-	<form class="simple-form">
-			Room Name: <input type="text" ng-model="newRoom.name" />{{roomMessage}}<br />
-       		<input type="submit" ng-click="roomName(newRoom.name)" value="Save" />	
-	</form>
-	<div ng-repeat="room in rooms" >
-		<my-Lobby room ='room'>
-
-		</my-Lobby>
-		<button ng-click="join(room)">Join</button>
-	</div>
+<div class="header">
+    <div class="menuButton">
+        <button ng-click='toggleMenu()'>
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
+    </div>
+    <div class="headerDiv">
+        <h1>Welcome to Stackalon!</h1>
+    </div>
+</div>
+<div class="menu" ng-show='visible'>
+   <div>
+        <div class="button" ng-show='showRoomSelection' ng-click='toggleLobby()'>
+            <p>See Users</p>
+        </div>
+    </div>
+    <div>
+        <div class="button" ng-show='showLobby' ng-click='toggleLobby()'>
+            <p>Show Room Selection</p>
+        </div>
+    </div>
+</div>
+<div class="myContainer">
+    <div class="bodyPage">
+        <div class="subHeader">
+            <h3>Room Selection</h4>
+            <br>
+        </div>
+        <div class="col-xs-12 col-sm-9 col-lg-10" ng-show='showRoomSelection'>
+            <div class="col-xs-12 col-md-4 ">
+                <p>Create a room or select one from the Rooms List</p>
+                <form class="simple-form">
+                    Room Name:
+                    <input type="text" ng-model="newRoom.name" />{{roomMessage}}
+                    <br />
+                    <input type="submit" ng-click="roomName(newRoom.name)" value="Save" />
+                </form>
+            </div>
+            <div class="col-xs-12 col-md-8 ">
+                <div class='col-xs-12' ng-show="rooms.length===0">
+                    <h3>No rooms have been added yet, create your own!</h3>
+        </div>
+        <div class='col-xs-12 col-sm-6 col-md-4 roomOption' ng-repeat="room in rooms">
+            <div class="paddingDiv">
+                <my-Lobby room='room'>
+                </my-Lobby>
+                <button ng-click="join(room)">Join</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-xs-3 col-lg-2 roomSelecting" id="MainLobby">
+    <my-Lobby room="lobby" username="currentUser.name">
+    </my-Lobby>
+</div>
+<div class="col-xs-12" ng-show="showLobby">
+    <my-Lobby room="lobby" username="currentUser.name">
+    </my-Lobby>
+</div>
+</div>
 </div>

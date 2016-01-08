@@ -1,0 +1,15 @@
+<div ng-controller="teamSelect">
+    <p>Pick your Team </p>
+    <form ng-submit="addToTeam(teammate,game)" ng-hide="ladyObj.returned">
+        <select ng-model="teammate" ng-options="user.name for user in game.players">
+        </select>
+        <input type="submit" id="submit" value="Submit">
+        <p>{{message}}</p>
+    </form>
+    <div ng-repeat='user in team'>
+    	<p>{{user.name}}</p>
+    	<button ng-click="removeUser(user)"></button> 
+    </div>
+    <br>
+    <button ng-click="submitTeam(team,game)" ng-disabled='!validTeam'>Submit Team</button>
+</div>

@@ -1,8 +1,8 @@
 app.controller('RoomController', function($scope, mySocket, $state, roomsFactory, $stateParams) {
 
     // $scope.rooms = roomsFactory.getRooms;
-    $scope.currentRoom = "test";
-    $scope.getCurrentRoom = roomsFactory.getCurrentRoom;
+    $scope.currentRoom = roomsFactory.getCurrentRoom();
+    $scope.getCurrentRoom = roomsFactory.getCurrentRoom();
     $scope.size = function() {
         if ($scope.currentRoom.users) {
             return $scope.currentRoom.users.length;
@@ -17,10 +17,8 @@ app.controller('RoomController', function($scope, mySocket, $state, roomsFactory
             room: room
         }, function(data) {
             if (data.bool) {
-                // console.log('Joined Room')
-                $state.go('home.currentRoom', {
-                    'newRoom': data.currentRoom
-                })
+                console.log('from join: ', data)
+
             }
         })
     }
@@ -28,18 +26,24 @@ app.controller('RoomController', function($scope, mySocket, $state, roomsFactory
     mySocket.on('updatedCurrentRoom', function(data) {
         // console.log('Data: ', data)
         roomsFactory.setCurrentRoom(data.currentRoom)
-        $scope.currentRoom = data.currentRoom;
+        $scope.currentRoom = roomsFactory.getCurrentRoom();
     })
 
     mySocket.on('currentRoom', function(data) {
         roomsFactory.setCurrentRoom(data.currentRoom);
         $scope.currentRoom = roomsFactory.getCurrentRoom();
-        // console.log("CURRENT ROOM: ", $scope.currentRoom)
-        $state.go('home.currentRoom', {
+        console.log("ROOM NAME", $scope.currentRoom)
+            // console.log("CURRENT ROOM: ", $scope.currentRoom)
+        $state.go('currentRoom', {
             'newRoom': $scope.currentRoom.name
         })
     })
 
+    mySocket.on('joined', function() {
+        $state.go('currentRoom', {
+            'newRoom': $scope.currentRoom.name
+        })
+    })
 
     $scope.roomName = function(name) {
         mySocket.emit('newRoom', {

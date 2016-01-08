@@ -1,4 +1,4 @@
-var app = angular.module('avalon-clone', ['btford.socket-io', 'ui.router', 'dndLists']);
+var app = angular.module('avalon-clone', ['btford.socket-io', 'ui.router', 'dndLists', 'ui.bootstrap']);
 
 app.factory('mySocket', function(socketFactory) {
 
@@ -16,14 +16,6 @@ app.config(function($stateProvider) {
         url: '/home',
         templateUrl: 'templates/homeTemplate.html',
         controller: 'RoomController'
-    }).state('home.roomJoin', {
-        url: '/room',
-        templateUrl: 'templates/roomSelectorTemplate.html',
-        controller: 'RoomController'
-    }).state('home.currentRoom', {
-        url: '/currentroom/:newRoom',
-        templateUrl: 'templates/currentRoomTemplate.html',
-        controller: 'RoomController'
     })
 })
 
@@ -34,4 +26,21 @@ app.config(function($stateProvider) {
         controller: 'MainCtrl'
     })
 })
+
+app.config(function($stateProvider) {
+    $stateProvider.state('roomJoin', {
+        url: '/room',
+        templateUrl: 'templates/roomSelectorTemplate.html',
+        controller: 'RoomController'
+    })
+})
+
+app.config(function($stateProvider) {
+    $stateProvider.state('currentRoom', {
+        url: '/currentroom/:newRoom',
+        templateUrl: 'templates/currentRoomTemplate.html',
+        controller: 'RoomController'
+    })
+})
+
 

@@ -1,95 +1,155 @@
 <!-- Modal -->
 <my-char role="role"></my-char>
-
-{{leader}}
 <div class="top md-col-12">
     <div class="mycontainer">
         <div class="md-col-12">
             <div class="logo">
-                <p>StackAlon</p>
-                <button ng-mouseenter="showData = !showData" ng-mouseleave="showData = !showData">Details</button>
-                <button ng-click="gameOrCurrent = !gameOrCurrent">Details</button>
+                <p class='boardInfo'>StackAlon</p>
+                <div class="inlineBlock">
+                    <button id="menuBtn" class='menuBtn' ng-click='toggleMenu()'>
+                        <span class="glyphicon glyphicon-menu-hamburger"></span>
+                    </button>
+                    <button id="detailsBtn" ng-mouseenter="showData = !showData" ng-mouseleave="showData = !showData">Details</button>
+                    <button class="boardInfo" ng-click="gameOrCurrent = !gameOrCurrent" ng-show="gameOrCurrent">Game Info</button>
+                    <button class='boardInfo' ng-click="gameOrCurrent = !gameOrCurrent" ng-show="!gameOrCurrent">Game Board</button>
+                </div>
             </div>
             <div class="role">
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Your Role</button>
-                <button ng-click='startGame({ Merlin: true,
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1">Your Role</button>
+                <!-- <button ng-click='startGame({ Merlin: true,
   Mordred: true,
   Morgana: true,
   Percival: true,
   Assassin: true,
   Oberon: true,
   Lady: true,
-  size: 10 })'>Restart</button>
+  size: 10 })'>Restart</button> -->
             </div>
         </div>
     </div>
 </div>
-<side-bar ng-show="showData"></side-bar>
-<div class="header">
-    <p>{{game.roomName}}</p>
+<div class="menu" ng-show='menuVisible'>
+    <div>
+        <div class="button" ng-show="view!=='Game'" ng-click="toggleView('Game')">
+            <p>Show Game Board</p>
+        </div>
+    </div>
+    <div>
+        <div class="button" ng-show="view!=='Game Info'" ng-click="toggleView('Game Info')">
+            <p>See Game Information</p>
+        </div>
+    </div>
+    <div>
+        <div class="button" ng-show="view!=='Users'" ng-click="toggleView('Users')">
+            <p>See Users in Lobby</p>
+        </div>
+    </div>
+    <div>
+        <div class="button" ng-show="view!=='Roles'" ng-click="toggleView('Roles')">
+            <p>Show Roles Being Used</p>
+        </div>
+    </div>
 </div>
+<side-bar game='game' ng-show="showData"></side-bar>
+<div class="subHeader">
+    <h3>{{tempGame.roomName}}</h4>
+</div>
+
 <div class="col-md-12 gameBoard">
-    <div class="board" ng-show="!gameOrCurrent">
-        <div ng-repeat="round in game.rounds" class="col-xs-2 col-sm-2 col-md-2 roundButton" ng-class="{'col-xs-offset-1 col-sm-offset-1 col-md-offset-1': $first}">
-            <button class="roundNumber disabled no-hover" ng-class="{evil: round.winner==='evil', good: round.winner==='good', current: game.currentRound===$index+1}"> {{round.people}} </button>
+    <div class="col-xs-12" ng-show="view==='Roles'">
+        <h2>Roles</h2>
+        <p>Picture here</p>
+        <img src="images/profilePicture.png" alt="">
+        <ul>
+            <li ng-repeat="role in game.roles track by $index">{{role}}</li>
+        </ul>
+        <h2 ng-show="game.Lady.inUse">Current Lady:</h2>
+        <p>{{game.Lady.currentHolder.name}}</p>
+    </div>
+    <div class="board bigGameBoard" ng-show="!gameOrCurrent">
+        <div ng-repeat="round in tempGame.rounds" class="col-xs-2 roundButton" ng-class="{'col-xs-offset-1 col-sm-offset-1 col-md-offset-1': $first}">
+            <button class="roundNumber disabled no-hover" ng-class="{evil: round.winner==='Evil', good: round.winner==='Good', current: tempGame.currentRound===$index+1}"> {{round.people}} </button>
             <p ng-show="round.doubleFail">Two Fails needed to Fail</p>
         </div>
     </div>
-    <div class="currentGameStats" ng-show="gameOrCurrent">
-    {{gameState}}
-        <div class="col-md-7 wrapper">
+    <div class="board smallGameBoard" ng-show="!gameOrCurrent && view==='Game'">
+        <div ng-repeat="round in tempGame.rounds" class="col-xs-12 roundButton " ng-show="view==='Game'">
+            <button class="roundNumber disabled no-hover" ng-class="{evil: round.winner==='Evil', good: round.winner==='Good', current: tempGame.currentRound===$index+1}"> {{round.people}} </button>
+            <p ng-show="round.doubleFail">Two Fails needed to Fail</p>
+        </div>
+    </div>
+    <div class="currentGameStats" ng-show="gameOrCurrent || view==='Game Info'">
+       
+        <div class="col-xs-12 col-md-7 wrapper">
             <div class="col-md-12 action">
                 <h4>Actionable Events</h4>
-                <div class="col-md-12 center2">
-                    <my-loading ng-show="!gameState.active" message="gameState.message"></my-loading>
+                <div class="col-md-12 center2" ng-show="!gameState.active">
+                    <my-loading message="gameState.message"></my-loading>
+                </div>
+                
+                <div ng-show="gameState.active">
+                    <my-team game="game" ng-show="gameState.state==='Selection'"></my-team>
+                    <my-voting ng-show="gameState.state==='Voting'"></my-voting>
+                    <my-quest ng-show="gameState.state==='Quest'"></my-quest>
+                    <div ng-show="gameState.state==='Lady'">
+                        <p>Pick a user to Lady</p>
+                        <form ng-submit="ladySubmit(LadySelect)" ng-hide="ladyObj.returned">
+                            <select ng-model="LadySelect" ng-options="user.name for user in tempGame.players">
+                            </select>
+                            <input type="submit" id="submit" value="Submit">
+                        </form>
+                        <p ng-show="ladyObj.returned"> WOAH: {{ladyObj.username}} is {{ladyObj.allegiance}}!</p>
+                        <br>
+                        <button ng-click="nextState()">Next State</button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-5 wrapper">
+        <div class="col-xs-12 col-md-5 wrapper">
             <div class="col-md-12 stats">
-                <h4>Current Round: {{game.currentRound}}</h4>
+                <h4>Current Round: {{tempGame.currentRound}}</h4>
                 <div class="scoreCard">
                     <h6>Score</h6>
-                    <h6>Good: {{game.score.Good}}</h6>
-                    <h6>Evil: {{game.score.Evil}}</h6>
+                    <h6>Good: {{tempGame.score.Good}}</h6>
+                    <h6>Evil: {{tempGame.score.Evil}}</h6>
+                    <h6>Vote Round: {{tempGame.roundOfVoting}}</h6>
+
                 </div>
                 <br>
                 <div class="col-md-12">
                     <div class="col-md-6">
                         <h7>Current Leader: </h7>
-                        <p>{{game.leader.name}}</p>
+                        <p>{{tempGame.leader.name}}</p>
                     </div>
                     <div class="col-md-6">
                         <h7>Current Lady</h7>
-                        <p>{{game.Lady.currentHolder.name}}</p>
+                        <p>{{tempGame.Lady.currentHolder.name}}</p>
                     </div>
                 </div>
             </div>
         </div>
-        <p>Current Game</p>
     </div>
     <br>
     <br>
     <div class="profileContainer">
-        <!--     <div>
-        {{yourRole}}
-        <h2>{{getGame().roomName}}</h2>
-        <ul>
-            <div ng-repeat='user in getGame().players' class="col-md-4 userBox">
-                <h3>{{user.name}}</h3>
-                <p ng-show="getGame().Lady.currentHolder.name === user.name">Lady</p>
-            </div>
-            <!-- <li ng-repeat='user in getGame().players' ng-class="{'blink_me':$last,'user':username===user.name}">{{user.name}}</li>
-        </ul>
-        <p>The Host is: {{room.host.name}}</p>
-    </div>
- -->
+         <div>  
+            <p>Users in Current Game</p>
+        </div>
         <div class="realContainer">
-            <div class="profileScroller" ng-repeat="user in game.players">
-                <my-profile user='user' username='username' lady='game.Lady' leader='game.leader'></my-profile>
+            <div class="profileScroller" ng-repeat="user in tempGame.players">
+                <my-profile user='user' username='username' lady='tempGame.Lady' leader='tempGame.leader'></my-profile>
             </div>
         </div>
     </div>
-    <div></div>
+        <div  ng-show="view==='Users'">
+         <div>  
+            <p>Users in Current Game</p>
+        </div>
+        <div class="realContainer">
+            <div class="profileScroller" ng-repeat="user in tempGame.players">
+                <my-profile user='user' username='username' lady='tempGame.Lady' leader='tempGame.leader'></my-profile>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- <pre> {{getGame() | json}} </pre> -->

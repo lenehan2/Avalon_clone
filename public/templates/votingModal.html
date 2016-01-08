@@ -1,0 +1,10 @@
+<div class="container">
+    <div>
+        <h5>The vote {{outcome}}</h5>
+    </div>
+    <div>
+        <ul>
+            <li ng-repeat="user in votes">{{user.user}}: {{user.vote}}</li>
+        </ul>
+    </div>
+</div>

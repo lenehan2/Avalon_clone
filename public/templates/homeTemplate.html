@@ -1,19 +1,99 @@
-<div class="mycontainer">
-    <div class="header">
+<div class="fullPage">
+    <div class="welcomeContainer">
+        <div id="welcome" class="col-xs-10 col-sm-4   col-xs-offset-1 col-sm-offset-4">
+            <div class="headerDiv">
+                <h1>Welcome to Stackalon!</h1>
+                <h4>A game of Role Playing and Deceit</h4>
+            </div>
+            <div>
+                <div class="headerDiv">
+                    <h5>Create your unique username!</h5>
+                </div>
+                <div>
+                    <form class="simple-form">
+                        <input type="text" ng-model="user.name" />{{message}}
+                        <br>
+                        <input type="submit" ng-click="userName(user)" value="Save" />
+                    </form>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="col-xs-6">
+                    <p>New to Stackalon?</p>
+                    <button value="How to Play">How To Play</button>
+                </div>
+                <div class="col-xs-6">
+                    <p>See the Main Lobby</p>
+                    <button value="How to Play">Lobby</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="welcomeContainerMobile">
+        <div id="welcome" class="col-xs-10 col-sm-4   col-xs-offset-1 col-sm-offset-4">
+            <div class="headerDiv">
+                <h1>Welcome to SSSSSS!</h1>
+                <h4>A game of Role Playing and Deceit</h4>
+            </div>
+            <div>
+                <div class="headerDiv">
+                    <h5>Create your unique username!</h5>
+                </div>
+                <div>
+                    <form class="simple-form">
+                        Name:
+                        <input type="text" ng-model="user.name" />{{message}}
+                        <br>
+                        <input type="submit" ng-click="userName(user)" value="Save" />
+                    </form>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="col-xs-6">
+                    <p>New to Stackalon?</p>
+                    <button value="How to Play">How To Play</button>
+                </div>
+                <div class="col-xs-6">
+                    <p>See the Main Lobby</p>
+                    <button value="How to Play">Lobby</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 
+<div class="header">
+    <div class="menuButton">
+        <button>
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
+    </div>
+    <div class="headerDiv">
         <h1>Welcome to Stackalon!</h1>
     </div>
-    <button ui-sref="testing"></button>
-    <div id="MainLobby">
-        <my-Lobby room="lobby" username="currentUser.name">
-        </my-Lobby>
-    </div>
-    <div ng-hide="userNameAccepted">
-        <form class="simple-form">
-            Name:
-            <input type="text" ng-model="user.name" />{{message}}
-            <br />
-            <input type="submit" ng-click="userName(user)" value="Save" />
-        </form>
+</div>
+<div class="mycontainer">
+    <div class="bodyPage">
+        <div id="MainLobby" class="col-xs-4 col-md-2">
+            <my-Lobby room="lobby" username="currentUser.name">
+            </my-Lobby>
+        </div>
+        <div id='userNameForm' class="col-xs-12 col-sm-10">
+        <p>Choose your username!</p>
+            <div ng-hide="userNameAccepted">
+                <form class="simple-form">
+                    Name:
+                    <input type="text" ng-model="user.name" />{{message}}
+                    <br />
+                    <input type="submit" ng-click="userName(user)" value="Save" />
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 <ui-view></ui-view>
+<button ng-click="testGame()"></button>
+ -->
+<!-- Modal -->
+
+<!-- <pre> {{getGame() | json}} </pre> -->

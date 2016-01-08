@@ -1,0 +1,18 @@
+<div ng-controller = "questController">
+    <div>
+        <p>Pass or Fail the Quest</p>
+        <!-- <form ng-submit="addToTeam(teammate)" ng-hide="ladyObj.returned">
+        <select ng-model="teammate" ng-options="user.name for user in game.players">
+        </select>
+        <input type="submit" id="submit" value="Submit">
+        <p>{{message}}</p>
+    </form> -->
+        <form ng-submit="vote(quest.vote)">
+            Vote:
+            <input type="radio" ng-model="quest.vote" value="Pass" />Pass
+            <input type="radio" ng-model="quest.vote" value="Fail" />Fail
+            <br />
+            <input type="submit" value='Submit'>
+        </form>
+    </div>
+</div>

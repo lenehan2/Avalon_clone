@@ -1,37 +1,107 @@
-<div class = "col-md-3">
-    <!-- <my-Lobby users="getCurrentRoom().users" room="getCurrentRoom()">
-    </my-Lobby> -->
-    <my-Lobby room="getCurrentRoom()">
-    </my-Lobby>
+<div class="header">
+    <div class="menuButton">
+        <button ng-click='toggleMenu()'>
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
+    </div>
+    <div class="headerDiv">
+        <h1>Welcome to Stackalon!</h1>
+    </div>
 </div>
-<div class = "col-md-3" ng-show="getCurrentRoom().host.name === currentUser.name" ng-controller="gameController" ng-submit='startGame(gameInfo)'>
-	<h3>Game Options</h3>
-    <form name="gameSetup" novalidate>
-        <p>Roles to Include: </p>
-        <span ng-class="{'suggestedRole': size()> 5}">Merlin</span>
-        <input type="checkbox" ng-model="gameInfo.Merlin" name="role" value="true">
-        <br> <span ng-class="{'suggestedRole': size()> 5}">Mordred</span>
-        <input type="checkbox" ng-model="gameInfo.Mordred" name="role" value="true">
-        <br> <span ng-class="{'suggestedRole': size()> 6}">Morgana</span>
-        <input type="checkbox" ng-model="gameInfo.Morgana" name="role" value="true">
-        <br> <span ng-class="{'suggestedRole': size()> 6}">Percival</span>
-        <input type="checkbox" name="role" ng-model="gameInfo.Percival" value="true">
-        <br> <span ng-class="{'suggestedRole': size()> 5}">Assassin</span>
-        <input type="checkbox" name="role" ng-model="gameInfo.Assassin" value="true">
-        <br> <span ng-class="{'suggestedRole': size()> 8}">Oberon</span>
-        <input type="checkbox" name="role" ng-model="gameInfo.Oberon" value="true">
-        <br>
-        <p>Do you want to play with the Lady Card?</p>
-        <input type="radio" ng-model="gameInfo.Lady" ng-value="true" checked><span ng-class="{'suggestedRole': size()> 2}">Yes</span>
-        <br>
-        <input type="radio" ng-model="gameInfo.Lady" ng-value="false"><span>No</span>
-        <br>
-        <br>
-        <input ng-disabled="getCurrentRoom().users.length < 5" type="submit" value="Let's play!">
-        <br>
-        <div id="errorMessage">
-            <p ng-hide="getCurrentRoom().users.length > 4">There are not enough players in the game to start</p>
+<div class="menu" ng-show='visible'>
+    <div>
+        <div class="button" ng-show='!showRoom' ng-click="toggleCurrent('Room')">
+            <p>See Room</p>
         </div>
-    </form>
+    </div>
+    <div>
+        <div class="button" ng-show='!showLobby' ng-click="toggleCurrent('Lobby')">
+            <p>Show Users In Lobby</p>
+        </div>
+    </div>
+    <div>
+        <div class="button" ng-show='!showCurrent' ng-click="toggleCurrent('Current')">
+            <p>Show Current Room</p>
+        </div>
+    </div>
 </div>
-<div class ="col-md-9"></div>
+<div class="myContainer">
+    <div class="subHeader">
+        <h2>Pre-Game Setup</h1>
+<button ng-click=testGame()>TESTGAME</button>
+</div>
+    <div class="bodyPage">
+        <div class="col-xs-12 col-md-3 currentRoom">
+        <h3>Current Room</h3>
+            <!-- <my-Lobby users="currentRoom.users" room="currentRoom">
+    </my-Lobby> -->
+            <my-Lobby room="currentRoom">
+            </my-Lobby>
+        </div>
+
+        
+      <!--   <div class="lobby">
+            <my-Lobby room="lobby"></my-Lobby>
+        </div> -->
+        <div ng-show='showRoom'>
+        <div class="col-md-6" ng-show="currentRoom.host.name === currentUser.name" ng-controller="gameController" ng-submit='startGame(gameInfo)'>
+            <div class="subHeader">
+                <h3>Game Options</h3>
+                
+            </div>
+            <h4>You are the host.  Select the options you'd like to play with so the game can continue</h4>
+            <form name="gameSetup" novalidate>
+                <p>Roles to Include: </p>
+                <span ng-class="{'suggestedRole': size()> 5}">Merlin</span>
+                <input type="checkbox" ng-model="gameInfo.Merlin" name="role" value="true">
+                <br> <span ng-class="{'suggestedRole': size()> 5}">Mordred</span>
+                <input type="checkbox" ng-model="gameInfo.Mordred" name="role" value="true">
+                <br> <span ng-class="{'suggestedRole': size()> 6}">Morgana</span>
+                <input type="checkbox" ng-model="gameInfo.Morgana" name="role" value="true">
+                <br> <span ng-class="{'suggestedRole': size()> 6}">Percival</span>
+                <input type="checkbox" name="role" ng-model="gameInfo.Percival" value="true">
+                <br> <span ng-class="{'suggestedRole': size()> 5}">Assassin</span>
+                <input type="checkbox" name="role" ng-model="gameInfo.Assassin" value="true">
+                <br> <span ng-class="{'suggestedRole': size()> 8}">Oberon</span>
+                <input type="checkbox" name="role" ng-model="gameInfo.Oberon" value="true">
+                <br>
+                <p>Do you want to play with the Lady Card?</p>
+                <input type="radio" ng-model="gameInfo.Lady" ng-value="true" checked><span ng-class="{'suggestedRole': size()> 2}">Yes</span>
+                <br>
+                <input type="radio" ng-model="gameInfo.Lady" ng-value="false"><span>No</span>
+                <br>
+                <br>
+                <p>Do you want to play with Cards or entirely on the computer?</p>
+                <input type="radio" ng-model="gameInfo.cards" ng-value="true" checked><span ng-class="{'suggestedRole': size()> 2}">Yes</span>
+                <br>
+                <input type="radio" ng-model="gameInfo.cards" ng-value="false"><span>No</span>
+                <br>
+                <input ng-disabled="currentRoom.users.length < 5" type="submit" value="Let's play!">
+                <br>
+                <div id="errorMessage">
+                    <p ng-hide="currentRoom.users.length > 4">There are not enough players in the game to start</p>
+                </div>
+            </form>
+
+            {{gameInfo}}
+        </div>
+        <div class="col-md-6" ng-show="currentRoom.host.name !== currentUser.name">
+            <my-loading message="'Waiting for '+ currentRoom.host.name+' to finish selecting Game Options'"></my-loading>
+        </div>
+        </div>
+        <div class="col-md-9"></div>
+    <div class="col-xs-12" ng-show="showCurrent">
+        <h3>Current Room</h3>
+        <!-- <my-Lobby users="currentRoom.users" room="currentRoom">
+        </my-Lobby> -->
+        <my-Lobby room="currentRoom">
+        </my-Lobby>
+    </div>
+    <div class="col-xs-12" ng-show="showLobby">
+        <my-Lobby room="lobby" username="currentUser.name">
+        </my-Lobby>
+    </div>
+    </div>
+</div>
+
+

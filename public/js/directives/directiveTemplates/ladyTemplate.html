@@ -1,0 +1,11 @@
+<div ng-show="gameState.state==='Lady'">
+    <p>Pick a user to Lady</p>
+    <form ng-submit="ladySubmit(LadySelect)" ng-hide="ladyObj.returned">
+        <select ng-model="LadySelect" ng-options="user.name for user in game.players">
+        </select>
+        <input type="submit" id="submit" value="Submit">
+    </form>
+    <p ng-show="ladyObj.returned"> WOAH: {{ladyObj.username}} is {{ladyObj.allegiance}}!</p>
+    <br>
+    <button ng-click="nextState()">Next State</button>
+</div>

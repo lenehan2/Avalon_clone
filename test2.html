@@ -1,0 +1,12 @@
+<div class="board bigGameBoard" ng-show="!gameOrCurrent">
+    <div ng-repeat="round in tempGame.rounds" class="col-xs-2 roundButton" ng-class="{'col-xs-offset-1 col-sm-offset-1 col-md-offset-1': $first}">
+        <button class="roundNumber disabled no-hover" ng-class="{evil: round.winner==='Evil', good: round.winner==='Good', current: tempGame.currentRound===$index+1}"> {{round.people}} </button>
+        <p ng-show="round.doubleFail">Two Fails needed to Fail</p>
+    </div>
+</div>
+<div class="board smallGameBoard" ng-show="!gameOrCurrent && view==='Game'">
+    <div ng-repeat="round in tempGame.rounds" class="col-xs-12 roundButton " ng-show="view==='Game'">
+        <button class="roundNumber disabled no-hover" ng-class="{evil: round.winner==='Evil', good: round.winner==='Good', current: tempGame.currentRound===$index+1}"> {{round.people}} </button>
+        <p ng-show="round.doubleFail">Two Fails needed to Fail</p>
+    </div>
+</div>
