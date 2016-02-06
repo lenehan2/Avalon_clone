@@ -14,6 +14,7 @@
     "angular-ui-router": "^0.2.15",
     "bluebird": "^3.0.6",
     "body-parser": "^1.14.1",
+    "bootstrap": "^3.3.6",
     "express": "^4.13.3",
     "morgan": "^1.6.1",
     "path": "^0.12.7",
