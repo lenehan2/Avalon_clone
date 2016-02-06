@@ -1,3 +1,4 @@
 # Avalon_clone
 
-THIS IS VERY RUDIMENTARY AND SLOPPY DON'T JUDGE ME PLEASE
+A web-app clone of the popular table-top game, Avalon.
+
